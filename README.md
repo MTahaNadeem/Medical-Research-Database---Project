@@ -70,6 +70,6 @@ The database consists of the following key tables:
 
 ## Contact
 For inquiries, feel free to reach out via:
-- [LinkedIn](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
+- [LinkedIn](https://www.linkedin.com/in/muhammad-taha-nadeem-5aa71a212/)
+- Email: tahanadeem478@gmail.com
 
