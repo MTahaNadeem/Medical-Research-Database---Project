@@ -181,7 +181,9 @@ Below is a structured README file section for the **Design and Development Lifec
 
 ### 5. ERD to Relational Data Model (RDM)
 
-*(Insert ERD image or diagram here)*
+![ERD Diagram](dbpicture/er.png)
+
+![RDM Diagram](dbpicture/rdm.png)
 
 ---
 
