@@ -57,9 +57,7 @@ Below is a structured README file section for the **Design and Development Lifec
 
 ---
 
-# Design and Development Lifecycle (DDLC): Medical Research Database
-
-## Part 1: Conceptual and Logical Design
+## Design and Development Lifecycle (DDLC): Medical Research Database
 
 ### 1. Description of Entities, Attributes, and Relationships
 
