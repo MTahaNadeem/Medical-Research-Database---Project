@@ -1,0 +1,212 @@
+# Clinical Trials Database Management
+
+## 1. Description of Entities and Attributes
+
+### Entities and Attributes:
+
+1. **Patients:** Stores information about individuals participating in clinical trials.  
+   **Attributes:** `Patient_ID` (Primary Key), `Name`, `Age`, `Gender`, `Medical_History`, `Contact_Info`  
+
+2. **Clinical Trials:** Captures details of clinical trials.  
+   **Attributes:** `Trial_ID` (Primary Key), `Title`, `Start_Date`, `End_Date`, `Status`, `Result`
+
+3. **Studies:** Contains metadata about specific studies conducted within trials.  
+   **Attributes:** `Study_ID` (Primary Key), `Name`, `Purpose`, `Protocol`, `Start_Date`, `End_Date`
+
+4. **Results:** Stores findings and outcomes of studies.  
+   **Attributes:** `Result_ID` (Primary Key), `Study_ID` (Foreign Key), `Patient_ID` (Foreign Key), `Observation`, `Measurement`, `Timestamp`
+
+5. **Drugs:** Holds information about drugs used or tested during trials.  
+   **Attributes:** `Drug_ID` (Primary Key), `Name`, `Manufacturer`, `Dosage`, `Side_Effect`
+
+6. **Metadata:** Captures additional details relevant to studies and trials.  
+   **Attributes:** `Metadata_ID` (Primary Key), `Trial_ID` (Foreign Key)
+
+---
+
+## 2. Database Implementation
+
+### Creating Tables
+
+```sql
+CREATE TABLE patients (
+    Patient_ID INT PRIMARY KEY,
+    Patient_Name VARCHAR(255),
+    Patient_Age INT(3),
+    Patient_Gender VARCHAR(10),
+    Patient_Contact VARCHAR(20),
+    Medical_History VARCHAR(255)
+);
+
+CREATE TABLE trials (
+    Trial_ID INT PRIMARY KEY,
+    Trial_Title VARCHAR(255),
+    Trial_StartDate DATE,
+    Trial_EndDate DATE,
+    Status VARCHAR(255),
+    Result VARCHAR(255)
+);
+
+CREATE TABLE studies (
+    Study_ID INT PRIMARY KEY,
+    Study_Name VARCHAR(255),
+    Study_Purpose VARCHAR(255),
+    Study_StartDate DATE,
+    Study_EndDate DATE,
+    Protocol VARCHAR(255)
+);
+
+CREATE TABLE results (
+    Result_ID INT PRIMARY KEY,
+    Trial_ID INT,
+    Study_ID INT,
+    Outcome VARCHAR(255),
+    Summary VARCHAR(255),
+    Date_Recorded DATETIME
+);
+
+CREATE TABLE drugs (
+    Drug_ID INT PRIMARY KEY,
+    Drug_Name VARCHAR(255),
+    Drug_Dosage VARCHAR(255),
+    Side_Effect VARCHAR(255),
+    Manufacturer VARCHAR(255)
+);
+
+CREATE TABLE metadata (
+    Metadata_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Trial_ID INT
+);
+```
+
+---
+
+## 3. Data Population
+
+### Inserting Data into Tables
+
+```sql
+INSERT INTO patients VALUES 
+(1, 'Patient 1', 45, 'Male', '92332145846', 'Hypertension'),
+(2, 'Patient 2', 32, 'Female', '9212345846', 'Diabetes'),
+(3, 'Patient 3', 68, 'Male', '9212345844', 'Asthma');
+
+INSERT INTO trials VALUES 
+(1, 'Trial A', '2024-11-01', '2024-12-29', 'Completed', 'Positive'),
+(2, 'Trial B', '2024-10-05', '2025-01-08', 'Completed', 'Negative'),
+(3, 'Trial C', '2024-12-10', '2024-12-28', 'Ongoing', NULL);
+
+INSERT INTO studies VALUES 
+(1, 'Study A1', 'Blood pressure analysis', '2024-11-01', '2024-12-29', 'Protocol A1'),
+(2, 'Study B1', 'Blood sugar analysis', '2024-10-05', '2025-01-08', 'Protocol B1');
+
+INSERT INTO results VALUES 
+(1, 1, 1, 'Normal BP', '120/80', '2024-11-01 10:00:00'),
+(2, 2, 2, 'Elevated Sugar', '180 mg/dL', '2024-10-05 09:00:00');
+
+INSERT INTO drugs VALUES 
+(1, 'Drug A', '50mg', 'Nausea', 'Pharma Inc.'),
+(2, 'Drug B', '100mg', 'Headache', 'HealthCorp');
+
+INSERT INTO metadata VALUES 
+(1, 1),
+(2, 2);
+```
+
+---
+
+## 4. SQL Queries
+
+### Selection
+
+```sql
+SELECT * FROM patients WHERE Patient_Age > 40;
+SELECT * FROM drugs WHERE Drug_Dosage = '50mg';
+SELECT * FROM trials WHERE Status = 'Completed';
+```
+
+### Projection
+
+```sql
+SELECT Patient_Name, Patient_Age FROM patients;
+SELECT Trial_Title, Status FROM trials;
+SELECT Drug_Name, Drug_Dosage FROM drugs;
+```
+
+### Join
+
+```sql
+SELECT s.Study_Name, t.Trial_Title 
+FROM studies s 
+JOIN trials t ON s.Study_ID = t.Trial_ID;
+
+SELECT d.Drug_Name 
+FROM drugs d 
+JOIN results r ON d.Drug_ID = r.Study_ID;
+
+SELECT s.Study_Name, d.Drug_Name 
+FROM studies s 
+LEFT JOIN drugs d ON s.Study_ID = d.Drug_ID;
+```
+
+### Aggregation
+
+```sql
+SELECT AVG(Patient_Age) AS Average_Age FROM patients;
+SELECT COUNT(*) AS Total_Trials FROM trials;
+SELECT MIN(Patient_Age) AS Youngest_Patient FROM patients;
+```
+
+### Subquery
+
+```sql
+SELECT Drug_ID, Drug_Name FROM drugs 
+WHERE Drug_ID IN (SELECT Study_ID FROM results WHERE Summary LIKE '%mg/dL');
+
+SELECT Trial_Title FROM trials 
+WHERE Trial_ID IN (SELECT Trial_ID FROM metadata);
+```
+
+### CRUD Operations
+
+```sql
+-- Create
+INSERT INTO patients VALUES (4, 'Patient 4', 23, 'Male', '922365659', 'Anxiety');
+
+-- Read
+SELECT * FROM patients;
+
+-- Update
+UPDATE patients SET Medical_History = 'Malaria' WHERE Patient_ID = 3;
+
+-- Delete
+DELETE FROM patients WHERE Patient_ID = 3;
+```
+
+---
+
+## 5. Relational Algebra Queries
+
+- **Selection:**  
+  σ Age > 40 (Patients)  
+  σ Gender = 'Female' (Patients)
+
+- **Projection:**  
+  π Name, Age (Patients)  
+  π Title (Clinical_Trials)
+
+- **Join:**  
+  Patients ⟒ Results  
+  Studies ⟒ Clinical_Trials
+
+- **Union:**  
+  π Name (Patients) ∪ π Name (Doctors)
+
+- **Difference:**  
+  π Patient_ID (Patients) - π Patient_ID (Results)
+
+- **Cartesian Product:**  
+  Patients × Drugs
+
+- **Natural Join:**  
+  Patients ⟒ Results
