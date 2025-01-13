@@ -47,14 +47,6 @@ A sql-based system for managing clinical trial data, patient records, study resu
 -	Enhancing features like auto-spelling correction and real-time updates for ongoing trials.
 -	Integrating dashboards for statistical analysis.
 
-
-### Technologies Used
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: PHP
-- **Database**: MySQL (via XAMPP)
-
-Below is a structured README file section for the **Design and Development Lifecycle (DDLC): Medical Research Database**:
-
 ---
 
 ## Design and Development Lifecycle (DDLC): Medical Research Database
