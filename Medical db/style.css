@@ -1,0 +1,169 @@
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+header {
+  background: #a06024;
+  color: white;
+  padding: 1.5em 0;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0 0;
+  text-align: center;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 30px 10%;
+}
+
+section {
+  margin-bottom: 30px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  color: #a06024;
+  margin-bottom: 15px;
+  font-size: 1.8em;
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+form input,
+form button {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+form button {
+  background: #a06024; 
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+form button:hover {
+  background-color: #8c4e1c; 
+}
+
+#trial-list,
+#patient-list,
+#stats-output {
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9; 
+  font-size: 0.95em; 
+}
+
+#trial-list p,
+#patient-list p {
+  margin: 5px 0; 
+}
+
+footer {
+  text-align: center; 
+  background-color: #a06024; 
+  color: white; 
+  padding: 15px 0; 
+  margin-top: auto; 
+}
+
+footer p {
+ margin: 0; 
+}
+
+button#generate-stats {
+ width:auto; 
+ display:inline-block; 
+ padding:10px 20px; 
+ background:#a06024; 
+ color:white; 
+ border:none; 
+ border-radius:5px; 
+ cursor:pointer; 
+ transition:bg-color .3s ease; 
+}
+
+button#generate-stats:hover {
+ background:#8c4e1c; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #a06024;
+  color: white;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #e0e0e0;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.table-title {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
