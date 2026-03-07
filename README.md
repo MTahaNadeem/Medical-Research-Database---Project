@@ -472,4 +472,3 @@ DELETE FROM patients WHERE Patient_ID = 3;
 
 - **Natural Join:**  
   Patients ⟒ Results
-
