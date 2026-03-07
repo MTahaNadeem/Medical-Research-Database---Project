@@ -1,4 +1,4 @@
-## Medical Research Database
+noooooooq## Medical Research Database
 
 A sql-based system for managing clinical trial data, patient records, study results, and drug information. This project provides a secure, interactive platform for researchers to store and analyze data, track study metadata, and generate insights.
 
